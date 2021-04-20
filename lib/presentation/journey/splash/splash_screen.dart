@@ -38,8 +38,12 @@ class _SplashScreenState extends State<SplashScreen> {
       alignment: Alignment.center,
       color: AppColor.primaryColor,
       child: getSvgPicture(
-          assetName: SvgConstants.logo,
-          size: Size(LayoutConstants.dimen_200.w, LayoutConstants.dimen_70.h)),
+        assetName: SvgConstants.logo,
+        size: Size(
+          LayoutConstants.dimen_200.w,
+          LayoutConstants.dimen_70.h,
+        ),
+      ),
     );
   }
 }
