@@ -39,8 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
       color: AppColor.primaryColor,
       child: getSvgPicture(
           assetName: SvgConstants.logo,
-          size: Size(
-              LayoutConstants.splashWidth.w, LayoutConstants.splashHeight.h)),
+          size: Size(LayoutConstants.dimen_200.w, LayoutConstants.dimen_70.h)),
     );
   }
 }

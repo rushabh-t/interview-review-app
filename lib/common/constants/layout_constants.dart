@@ -6,6 +6,6 @@ abstract class LayoutConstants {
   static const double dimen_0 = 0.0;
 
   //splash screen constants
-  static const double splashWidth = 200.0;
-  static const double splashHeight = 70.3;
+  static const double dimen_200 = 200.0;
+  static const double dimen_70 = 70.3;
 }
