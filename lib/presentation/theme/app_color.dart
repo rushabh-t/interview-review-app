@@ -39,4 +39,5 @@ abstract class AppColor {
 
   static Color primaryColor25 = primaryColor.withOpacity(0.25);
   static Color divider = transparent;
+  static Color regalBlue83 = regalBlue.withOpacity(0.83);
 }

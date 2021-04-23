@@ -72,17 +72,17 @@ abstract class ThemeText {
   );
 
   static final TextStyle subtitle1 = TextStyle(
-    fontSize: 16.sp,
-    color: AppColor.primaryTextColor,
-    fontWeight: FontWeight.w500,
+    fontSize: 17.sp,
+    color: AppColor.regalBlue,
+    fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     wordSpacing: 0,
   );
 
   static final TextStyle subtitle2 = TextStyle(
-    fontSize: 14.sp,
-    color: AppColor.primaryTextColor,
-    fontWeight: FontWeight.w500,
+    fontSize: 13.sp,
+    color: AppColor.regalBlue83,
+    fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     wordSpacing: 0,
   );
@@ -131,7 +131,14 @@ extension CustomTextTheme on TextTheme {
       );
 
   TextStyle get overline2 => overline.copyWith(
-        fontSize: 10.sp,
+        fontWeight: FontWeight.w900,
+        fontSize: 12.sp,
+        color: AppColor.regalBlue.withOpacity(0.38),
+      );
+
+  TextStyle get buttonText => subtitle2.copyWith(
+        fontWeight: FontWeight.w500,
+        decoration: TextDecoration.underline,
       );
 
   TextStyle get nonButton => caption.copyWith(
