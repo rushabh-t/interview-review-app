@@ -5,9 +5,7 @@ import 'package:interview_review_app/domain/respositories/user_repository.dart';
 class UserRepositoryImpl extends UserRepository {
   RemoteDataSource remoteDataSource;
 
-  UserRepositoryImpl() {
-    this.remoteDataSource = RemoteDataSource();
-  }
+  UserRepositoryImpl(this.remoteDataSource);
 
   @override
   Future<UserData> getUserData() => this.remoteDataSource.getUserData();

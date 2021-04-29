@@ -1,11 +1,24 @@
 import 'package:interview_review_app/data/model/userdata.dart';
 
-abstract class HomeState {}
+abstract class HomeState {
+  final UserData userData;
+  int count;
 
-class ListLoadingState extends HomeState {}
+  HomeState(this.userData, this.count);
+}
+
+class ListLoadingState extends HomeState {
+  ListLoadingState() : super(UserData(), 0);
+}
 
 class ListLoadedState extends HomeState {
-  final UserData userData;
+  ListLoadedState(UserData userData, int count) : super(userData, count);
+}
 
-  ListLoadedState(this.userData);
+class UserAddedState extends ListLoadedState {
+  UserAddedState(UserData userData, int count) : super(userData, count);
+}
+
+class UserRemovedState extends ListLoadedState {
+  UserRemovedState(UserData userData, int count) : super(userData, count);
 }

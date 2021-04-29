@@ -5,9 +5,7 @@ import 'package:interview_review_app/network/api/api_client_endpoint.dart';
 class RemoteDataSource {
   ApiClient _client;
 
-  RemoteDataSource() {
-    _client = ApiClient();
-  }
+  RemoteDataSource(this._client);
 
   Future<UserData> getUserData({int count = 50}) async {
     Map<String, dynamic> jsonData =

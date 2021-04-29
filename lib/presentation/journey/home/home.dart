@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:interview_review_app/common/constants/layout_constants.dart';
 import 'package:interview_review_app/common/constants/svg_constants.dart';
 import 'package:interview_review_app/common/utils/widget_utils.dart';
+import 'package:interview_review_app/di/injector.dart';
 import 'package:interview_review_app/presentation/journey/home/bloc/home_bloc.dart';
 import 'package:interview_review_app/presentation/journey/home/bloc/home_event.dart';
 import 'package:interview_review_app/presentation/journey/home/bloc/home_state.dart';
@@ -17,11 +18,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   HomeBloc homeBloc;
+  int userCount = 0;
 
   @override
   void initState() {
     super.initState();
-    homeBloc = HomeBloc()..add(LoadListEvent());
+    homeBloc = Injector.resolve<HomeBloc>()..add(LoadListEvent());
   }
 
   @override
@@ -31,11 +33,9 @@ class _HomeState extends State<Home> {
   }
 
   @override
-  Container build(BuildContext context) => Container(
-        height: LayoutConstants.designHeight.h,
-        width: LayoutConstants.designWidth.w,
-        child: Scaffold(
-          body: getStack(),
+  Scaffold build(BuildContext context) => Scaffold(
+        body: Container(
+          child: getStack(),
         ),
       );
 
@@ -55,14 +55,14 @@ class _HomeState extends State<Home> {
             top: 41.h,
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
-              alignment: Alignment.center,
               height: 642.h,
               width: LayoutConstants.designWidth.w,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
-                    height: 60.h,
                     width: LayoutConstants.designWidth.w,
                     child: Text(
                       "Interviewers",
@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
                     height: 14.h,
                     width: LayoutConstants.designWidth.w,
                     child: Text(
-                      "0 ADDED",
+                      "${homeBloc.state.count} ADDED",
                       textAlign: TextAlign.left,
                       style: Theme.of(context).textTheme.overline2,
                     ),
@@ -140,6 +140,7 @@ class _HomeState extends State<Home> {
       builder: (context, state) {
         if (state is ListLoadingState) {
           return Container(
+            alignment: Alignment.center,
             child: CircularProgressIndicator(),
           );
         } else if (state is ListLoadedState) {
@@ -161,12 +162,7 @@ class _HomeState extends State<Home> {
                   state.userData.results[index].cell,
                   style: ThemeText.subtitle2,
                 ),
-                trailing: TextButton(
-                    child: Text(
-                      "ADD",
-                      style: Theme.of(context).textTheme.buttonText,
-                    ),
-                    onPressed: () {}),
+                trailing: getAddRemoveButton(),
               );
             },
           );
@@ -178,5 +174,46 @@ class _HomeState extends State<Home> {
         }
       },
     );
+  }
+
+  BlocBuilder getAddRemoveButton() {
+    return BlocBuilder(
+      cubit: homeBloc,
+      builder: (context, state) {
+        if (state is UserAddedState) {
+          return TextButton(
+            child: Text(
+              "REMOVE",
+              style: Theme.of(context).textTheme.buttonText,
+            ),
+            onPressed: onRemovePressed,
+          );
+        } else if (state is UserRemovedState) {
+          return TextButton(
+            child: Text(
+              "ADD",
+              style: Theme.of(context).textTheme.buttonText,
+            ),
+            onPressed: onAddPressed,
+          );
+        } else
+          return TextButton(
+            child: Text(
+              "ADD",
+              style: Theme.of(context).textTheme.buttonText,
+            ),
+            onPressed: onAddPressed,
+          );
+      },
+    );
+  }
+
+  void onRemovePressed() {
+    //userCount = state.count;
+    homeBloc.add(UserRemoveEvent(userCount));
+  }
+
+  void onAddPressed() {
+    homeBloc.add(UserAddEvent(userCount));
   }
 }

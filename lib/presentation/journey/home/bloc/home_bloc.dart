@@ -7,20 +7,36 @@ import 'package:interview_review_app/presentation/journey/home/bloc/home_state.d
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   UserUsecase userUsecase;
 
-  HomeBloc() : super(ListLoadingState()) {
-    this.userUsecase = UserUsecase();
-  }
+  HomeBloc(this.userUsecase) : super(ListLoadingState());
 
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
-    if (event is LoadListEvent) {
-      yield* _mapLoadListEventToState(event);
+    switch (event.runtimeType) {
+      case LoadListEvent:
+        yield* _mapLoadListEventToState(event);
+        break;
+      case UserAddEvent:
+        yield* _mapUserAddEventToState(event);
+        break;
+      case UserRemoveEvent:
+        yield* _mapUserRemoveEventToState(event);
+        break;
     }
   }
 
   Stream<HomeState> _mapLoadListEventToState(LoadListEvent event) async* {
     yield ListLoadingState();
     final UserData userData = await userUsecase.getUserData();
-    yield ListLoadedState(userData);
+    yield ListLoadedState(userData, 0);
+  }
+
+  Stream<HomeState> _mapUserAddEventToState(UserAddEvent event) async* {
+    event.count++;
+    yield UserAddedState(state.userData, event.count);
+  }
+
+  Stream<HomeState> _mapUserRemoveEventToState(UserAddEvent event) async* {
+    event.count--;
+    yield UserRemovedState(state.userData, event.count);
   }
 }
