@@ -24,6 +24,8 @@ abstract class AppColor {
   // Application Colors
   static const Color primaryColor = Color(0xFF2291F3);
   static const Color secondaryColor = Color(0xFFE9EBF2);
+  static const Color secondaryColor83 = Color(0xD3E9EBF2);
+  static const Color secondaryColor00 = Color(0x00E9EBF2);
 
   static const Color primaryTextColor = regalBlue;
   static const Color primaryColorHint38 = _regalBlue38;
@@ -40,4 +42,5 @@ abstract class AppColor {
   static Color primaryColor25 = primaryColor.withOpacity(0.25);
   static Color divider = transparent;
   static Color regalBlue83 = regalBlue.withOpacity(0.83);
+  static Color solitude83 = solitude.withOpacity(0.83);
 }

@@ -31,12 +31,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Stream<HomeState> _mapUserAddEventToState(UserAddEvent event) async* {
-    event.count++;
+    state.userData.results[event.index].isAdded = true;
     yield UserAddedState(state.userData, event.count);
   }
 
-  Stream<HomeState> _mapUserRemoveEventToState(UserAddEvent event) async* {
-    event.count--;
+  Stream<HomeState> _mapUserRemoveEventToState(UserRemoveEvent event) async* {
+    state.userData.results[event.index].isAdded = false;
     yield UserRemovedState(state.userData, event.count);
   }
 }

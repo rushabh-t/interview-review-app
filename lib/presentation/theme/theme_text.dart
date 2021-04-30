@@ -106,6 +106,14 @@ abstract class ThemeText {
   static final TextStyle button = caption.copyWith(
     letterSpacing: 1.0,
     fontWeight: FontWeight.bold,
+    fontSize: 15.sp,
+  );
+
+  static final TextStyle buttonEnabled = caption.copyWith(
+    letterSpacing: 1.0,
+    fontWeight: FontWeight.bold,
+    fontSize: 15.sp,
+    color: AppColor.white,
   );
 
   static TextTheme defaultTextTheme() => TextTheme(

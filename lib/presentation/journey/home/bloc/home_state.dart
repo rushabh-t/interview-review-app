@@ -12,13 +12,13 @@ class ListLoadingState extends HomeState {
 }
 
 class ListLoadedState extends HomeState {
-  ListLoadedState(UserData userData, int count) : super(userData, count);
+  ListLoadedState(UserData userData, count) : super(userData, count);
 }
 
 class UserAddedState extends ListLoadedState {
-  UserAddedState(UserData userData, int count) : super(userData, count);
+  UserAddedState(userData, count) : super(userData, count);
 }
 
 class UserRemovedState extends ListLoadedState {
-  UserRemovedState(UserData userData, int count) : super(userData, count);
+  UserRemovedState(userData, count) : super(userData, count);
 }

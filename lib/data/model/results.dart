@@ -4,8 +4,9 @@ class Results {
   Name name;
   String phone;
   String cell;
+  bool isAdded;
 
-  Results({this.name, this.phone, this.cell});
+  Results({this.name, this.phone, this.cell, this.isAdded = false});
 
   Results.fromJson(Map<String, dynamic> json) {
     name = json['name'] != null ? Name.fromJson(json['name']) : null;
