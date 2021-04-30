@@ -72,17 +72,17 @@ abstract class ThemeText {
   );
 
   static final TextStyle subtitle1 = TextStyle(
-    fontSize: 17.sp,
-    color: AppColor.regalBlue,
-    fontWeight: FontWeight.w400,
+    fontSize: 16.sp,
+    color: AppColor.primaryTextColor,
+    fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     wordSpacing: 0,
   );
 
   static final TextStyle subtitle2 = TextStyle(
-    fontSize: 13.sp,
-    color: AppColor.regalBlue83,
-    fontWeight: FontWeight.w400,
+    fontSize: 14.sp,
+    color: AppColor.primaryTextColor,
+    fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     wordSpacing: 0,
   );
@@ -106,14 +106,6 @@ abstract class ThemeText {
   static final TextStyle button = caption.copyWith(
     letterSpacing: 1.0,
     fontWeight: FontWeight.bold,
-    fontSize: 15.sp,
-  );
-
-  static final TextStyle buttonEnabled = caption.copyWith(
-    letterSpacing: 1.0,
-    fontWeight: FontWeight.bold,
-    fontSize: 15.sp,
-    color: AppColor.white,
   );
 
   static TextTheme defaultTextTheme() => TextTheme(
@@ -139,14 +131,7 @@ extension CustomTextTheme on TextTheme {
       );
 
   TextStyle get overline2 => overline.copyWith(
-        fontWeight: FontWeight.w900,
-        fontSize: 12.sp,
-        color: AppColor.regalBlue.withOpacity(0.38),
-      );
-
-  TextStyle get buttonText => subtitle2.copyWith(
-        fontWeight: FontWeight.w500,
-        decoration: TextDecoration.underline,
+        fontSize: 10.sp,
       );
 
   TextStyle get nonButton => caption.copyWith(

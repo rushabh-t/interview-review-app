@@ -15,15 +15,11 @@ dependencies:
   pedantic: ^1.11.0
   flutter_svg: ^0.21.0+1
   flutter_screenutil: ^5.0.0
-  http: ^0.13.1
-  kiwi: ^2.0.1 # For Dependency Injection
-  flutter_bloc: ^6.0.3
+  rxdart: ^0.26.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^1.10.3
-  kiwi_generator: ^2.0.1
 
 flutter:
   assets:
