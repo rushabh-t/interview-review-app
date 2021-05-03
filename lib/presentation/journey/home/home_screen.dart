@@ -182,11 +182,9 @@ class _HomeState extends State<Home> {
     }
   }
 
-  void onRemovePressed(index) =>
-      homeBloc.add(UserRemoveEvent(homeBloc.state.count, index));
+  void onRemovePressed(index) => homeBloc.add(UserRemoveEvent(index));
 
-  void onAddPressed(index) =>
-      homeBloc.add(UserAddEvent(homeBloc.state.count, index));
+  void onAddPressed(index) => homeBloc.add(UserAddEvent(index));
 
   ElevatedButton getNextButton() {
     if (homeBloc.state.count <= 0) {

@@ -3,13 +3,13 @@ abstract class HomeEvent {}
 class LoadListEvent extends HomeEvent {}
 
 class UserAddEvent extends HomeEvent {
-  int count, index;
+  int index;
 
-  UserAddEvent(this.count, this.index);
+  UserAddEvent(this.index);
 }
 
 class UserRemoveEvent extends HomeEvent {
-  int count, index;
+  int index;
 
-  UserRemoveEvent(this.count, this.index);
+  UserRemoveEvent(this.index);
 }
