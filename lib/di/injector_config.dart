@@ -1,4 +1,4 @@
-import 'package:interview_review_app/data/datasources/remote_data_source.dart';
+import 'package:interview_review_app/data/datasources/user_remote_data_source.dart';
 import 'package:interview_review_app/data/repositories/user_repository_impl.dart';
 import 'package:interview_review_app/domain/respositories/user_repository.dart';
 import 'package:interview_review_app/domain/usecases/user_usecase.dart';
@@ -46,7 +46,7 @@ abstract class InjectorConfig {
   void _configureLocalDataSources();
 
   /// ============ Register RemoteDataSources ============
-  @Register.singleton(RemoteDataSource)
+  @Register.singleton(UserRemoteDataSource)
   void _configureRemoteDataSources();
 
   /// ============ Register Common Classes ============

@@ -23,7 +23,7 @@ class _$InjectorConfig extends InjectorConfig {
   void _configureRepositories() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton<UserRepository>(
-        (c) => UserRepositoryImpl(c<RemoteDataSource>()));
+        (c) => UserRepositoryImpl(c<UserRemoteDataSource>()));
   }
 
   @override
@@ -31,7 +31,7 @@ class _$InjectorConfig extends InjectorConfig {
   @override
   void _configureRemoteDataSources() {
     final KiwiContainer container = KiwiContainer();
-    container.registerSingleton((c) => RemoteDataSource(c<ApiClient>()));
+    container.registerSingleton((c) => UserRemoteDataSource(c<ApiClient>()));
   }
 
   @override

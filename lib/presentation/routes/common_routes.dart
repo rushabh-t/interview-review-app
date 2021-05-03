@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:interview_review_app/presentation/journey/home/home.dart';
+import 'package:interview_review_app/presentation/journey/home/home_screen.dart';
 import 'package:interview_review_app/presentation/routes/route_constants.dart';
 
 abstract class CommonRoutes {

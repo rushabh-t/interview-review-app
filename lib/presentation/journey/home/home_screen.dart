@@ -18,7 +18,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   HomeBloc homeBloc;
-  int userCount = 0;
 
   @override
   void initState() {
@@ -34,8 +33,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: BlocConsumer<HomeBloc, HomeState>(
-          listener: onStateChange,
+        body: BlocBuilder<HomeBloc, HomeState>(
           cubit: homeBloc,
           builder: (context, state) => getStack(state),
         ),
@@ -43,7 +41,7 @@ class _HomeState extends State<Home> {
 
   Stack getStack(state) => Stack(
         children: <Widget>[
-          //1st element stack
+          //watermark
           Positioned(
             top: LayoutConstants.dimen_51.h,
             left: LayoutConstants.dimen_384,
@@ -54,6 +52,7 @@ class _HomeState extends State<Home> {
             ),
           ),
 
+          //1st element of stack
           Positioned(
             top: LayoutConstants.dimen_41.h,
             child: Container(
@@ -85,7 +84,7 @@ class _HomeState extends State<Home> {
                     height: LayoutConstants.dimen_14.h,
                     width: LayoutConstants.designWidth.w,
                     child: Text(
-                      "$userCount ADDED",
+                      "${state.count} ADDED",
                       textAlign: TextAlign.left,
                       style: Theme.of(context).textTheme.overline2,
                     ),
@@ -133,7 +132,7 @@ class _HomeState extends State<Home> {
         ],
       );
 
-  ListView getList(state) {
+  Widget getList(state) {
     if (state is ListLoadedState ||
         state is UserAddedState ||
         state is UserRemovedState) {
@@ -160,7 +159,7 @@ class _HomeState extends State<Home> {
         },
       );
     } else
-      return ListView();
+      return Container();
   }
 
   TextButton getAddRemoveButton(item, index) {
@@ -183,24 +182,14 @@ class _HomeState extends State<Home> {
     }
   }
 
-  void onRemovePressed(index) {
-    userCount--;
-    homeBloc.add(UserRemoveEvent(userCount, index));
-  }
+  void onRemovePressed(index) =>
+      homeBloc.add(UserRemoveEvent(homeBloc.state.count, index));
 
-  void onAddPressed(index) {
-    userCount++;
-    homeBloc.add(UserAddEvent(userCount, index));
-  }
-
-  void onStateChange(BuildContext context, HomeState state) {
-    if (state is UserRemovedState || state is UserAddedState) {
-      getStack(state);
-    }
-  }
+  void onAddPressed(index) =>
+      homeBloc.add(UserAddEvent(homeBloc.state.count, index));
 
   ElevatedButton getNextButton() {
-    if (userCount == 0) {
+    if (homeBloc.state.count <= 0) {
       return ElevatedButton.icon(
         onPressed: null,
         label: Icon(
