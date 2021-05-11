@@ -8,6 +8,7 @@ import 'package:interview_review_app/di/injector.dart';
 import 'package:interview_review_app/presentation/journey/home/bloc/home_bloc.dart';
 import 'package:interview_review_app/presentation/journey/home/bloc/home_event.dart';
 import 'package:interview_review_app/presentation/journey/home/bloc/home_state.dart';
+import 'package:interview_review_app/presentation/routes/route_constants.dart';
 import 'package:interview_review_app/presentation/theme/app_color.dart';
 import 'package:interview_review_app/presentation/theme/theme_text.dart';
 
@@ -148,7 +149,9 @@ class _HomeState extends State<Home> {
               state.userData.results[index].name.first +
                   ' ' +
                   state.userData.results[index].name.last,
-              style: ThemeText.subtitle1,
+              style: (state.userData.results[index].isAdded == true)
+                  ? Theme.of(context).textTheme.selectedSubtitle1
+                  : ThemeText.subtitle1,
             ),
             subtitle: Text(
               state.userData.results[index].cell,
@@ -211,7 +214,7 @@ class _HomeState extends State<Home> {
       );
     } else {
       return ElevatedButton.icon(
-        onPressed: () {},
+        onPressed: () => Navigator.pushNamed(context, RouteConstants.rating),
         label: Icon(
           Icons.navigate_next,
           size: LayoutConstants.dimen_24,

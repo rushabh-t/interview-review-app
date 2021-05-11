@@ -5,4 +5,8 @@ abstract class SvgConstants {
   static const logo = '$_assetsSvg/coditasLogo.svg';
   static const logoWaterMark = '$_assetsSvg/coditasWaterMark.svg';
   static const searchIcon = '$_assetsSvg/searchIcon.svg';
+  static const awesomeIcon = '$_assetsSvg/icon_awesome.svg';
+  static const goodIcon = '$_assetsSvg/icon_awesome-icons_good.svg';
+  static const neutralIcon = '$_assetsSvg/icon_awesome-icons_neutral.svg';
+  static const badIcon = '$_assetsSvg/icon_awesome-icons_bad.svg';
 }

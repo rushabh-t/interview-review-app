@@ -3,6 +3,7 @@ import 'package:interview_review_app/data/repositories/user_repository_impl.dart
 import 'package:interview_review_app/domain/respositories/user_repository.dart';
 import 'package:interview_review_app/domain/usecases/user_usecase.dart';
 import 'package:interview_review_app/presentation/journey/home/bloc/home_bloc.dart';
+import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_bloc.dart';
 import 'package:kiwi/kiwi.dart';
 
 import 'package:interview_review_app/network/api/api_client.dart';
@@ -32,6 +33,7 @@ abstract class InjectorConfig {
 
   /// ============ Register Blocs ============
   @Register.factory(HomeBloc)
+  @Register.factory(RatingBloc)
   void _configureBlocs();
 
   /// ============ Register UseCases ============

@@ -11,6 +11,7 @@ class _$InjectorConfig extends InjectorConfig {
   void _configureBlocs() {
     final KiwiContainer container = KiwiContainer();
     container.registerFactory((c) => HomeBloc(c<UserUsecase>()));
+    container.registerFactory((c) => RatingBloc());
   }
 
   @override
