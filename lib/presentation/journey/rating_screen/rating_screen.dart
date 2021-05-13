@@ -5,6 +5,7 @@ import 'package:interview_review_app/common/constants/layout_constants.dart';
 import 'package:interview_review_app/common/constants/svg_constants.dart';
 import 'package:interview_review_app/common/utils/widget_utils.dart';
 import 'package:interview_review_app/di/injector.dart';
+import 'package:interview_review_app/domain/entities/rating_card_entity.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_bloc.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_state.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_event.dart';
@@ -19,11 +20,12 @@ class RatingScreen extends StatefulWidget {
 
 class _RatingScreenState extends State<RatingScreen> {
   RatingBloc ratingBloc;
+  List<RatingCardEntity> ratingCardEntityList;
 
   @override
   void initState() {
-    ratingBloc = Injector.resolve<RatingBloc>();
     super.initState();
+    ratingBloc = Injector.resolve<RatingBloc>()..add(LoadRatingEvent());
   }
 
   @override
@@ -40,7 +42,7 @@ class _RatingScreenState extends State<RatingScreen> {
         ),
       );
 
-  Stack getStack(state) => Stack(
+  Stack getStack(RatingState state) => Stack(
         children: <Widget>[
           Positioned(
             top: LayoutConstants.dimen_51.h,
@@ -106,7 +108,7 @@ class _RatingScreenState extends State<RatingScreen> {
         ),
       );
 
-  GridView getRatings(state) => GridView.builder(
+  GridView getRatings(RatingState state) => GridView.builder(
         shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           childAspectRatio:

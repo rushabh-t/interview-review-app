@@ -2,13 +2,19 @@ import 'package:interview_review_app/presentation/journey/rating_screen/rating_s
 
 abstract class RatingState {
   int index;
+
   RatingScreenConstants ratingScreenConstants;
 
   RatingState(this.index, this.ratingScreenConstants);
 }
 
 class RatingInitial extends RatingState {
-  RatingInitial(int index) : super(index, RatingScreenConstants());
+  RatingInitial() : super(0, RatingScreenConstants());
+}
+
+class RatingLoaded extends RatingState {
+  RatingLoaded(int index, RatingScreenConstants ratingScreenConstants)
+      : super(index, ratingScreenConstants);
 }
 
 class RatingSelected extends RatingState {

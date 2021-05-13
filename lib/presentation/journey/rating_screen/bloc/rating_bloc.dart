@@ -5,26 +5,40 @@ import 'package:interview_review_app/domain/entities/rating_card_entity.dart';
 
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_state.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_event.dart';
+import 'package:interview_review_app/presentation/journey/rating_screen/rating_screen_constants.dart';
 
 class RatingBloc extends Bloc<RatingEvent, RatingState> {
   List<RatingCardEntity> ratingCard;
+  RatingScreenConstants ratingScreenConstants;
 
-  RatingBloc() : super(RatingInitial(0));
+  RatingBloc() : super(RatingInitial());
 
   @override
   Stream<RatingState> mapEventToState(RatingEvent event) async* {
-    if (event is OnTapEvent) {
-      yield* _mapOnTapEventToState(event);
+    switch (event.runtimeType) {
+      case OnTapEvent:
+        yield* _mapOnTapEventToState(event);
+        break;
+      case LoadRatingEvent:
+        yield* _mapLoadRatingEventToState(event);
+        break;
     }
   }
 
   Stream<RatingState> _mapOnTapEventToState(OnTapEvent event) async* {
-    state.ratingScreenConstants.ratingCardEntityList.forEach((element) {
+    yield RatingLoaded(event.index, state.ratingScreenConstants);
+    ratingCard = state.ratingScreenConstants.ratingCardEntityList;
+    ratingCard.forEach((element) {
       element.isSelected = false;
     });
-    RatingCardEntity ratingCardEntity =
-        state.ratingScreenConstants.ratingCardEntityList[event.index];
+    RatingCardEntity ratingCardEntity = ratingCard[event.index];
     ratingCardEntity.isSelected = true;
     yield RatingSelected(event.index, state.ratingScreenConstants);
+  }
+
+  Stream<RatingState> _mapLoadRatingEventToState(LoadRatingEvent event) async* {
+    yield RatingInitial();
+    ratingCard = state.ratingScreenConstants.ratingCardEntityList;
+    yield RatingLoaded(state.index, state.ratingScreenConstants);
   }
 }
