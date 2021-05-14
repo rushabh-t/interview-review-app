@@ -191,4 +191,11 @@ extension CustomTextTheme on TextTheme {
   TextStyle get selectedSubtitle1 => subtitle1.copyWith(
         color: AppColor.primaryColor,
       );
+  TextStyle get headline6 => headline6.copyWith(
+        fontSize: 22.sp,
+      );
+
+  TextStyle get reviewHint => headline5.copyWith(
+        fontWeight: FontWeight.w300,
+      );
 }
