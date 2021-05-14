@@ -9,7 +9,6 @@ import 'package:interview_review_app/domain/entities/rating_card_entity.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_bloc.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_state.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_event.dart';
-import 'package:interview_review_app/presentation/routes/route_constants.dart';
 import 'package:interview_review_app/presentation/theme/app_color.dart';
 import 'package:interview_review_app/presentation/theme/theme_text.dart';
 
@@ -91,7 +90,7 @@ class _RatingScreenState extends State<RatingScreen> {
       );
 
   TextButton goBackButton() => TextButton(
-        onPressed: () => Navigator.pushNamed(context, RouteConstants.home),
+        onPressed: () => Navigator.pop(context),
         child: Text(
           "GO BACK",
           style: Theme.of(context).textTheme.backButton,
@@ -117,11 +116,11 @@ class _RatingScreenState extends State<RatingScreen> {
           crossAxisSpacing: LayoutConstants.dimen_17.w,
           mainAxisSpacing: LayoutConstants.dimen_16.h,
         ),
-        itemCount: state.ratingScreenConstants.ratingCardEntityList.length,
+        itemCount: state.ratingCardEntityList.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => ratingBloc.add(OnTapEvent(index)),
-            child: state.ratingScreenConstants.ratingCardEntityList
+            child: state.ratingCardEntityList
                 .map(
                   (value) => Card(
                     elevation:

@@ -5,8 +5,9 @@ import 'package:interview_review_app/common/utils/widget_utils.dart';
 import 'package:interview_review_app/domain/entities/rating_card_entity.dart';
 import 'package:interview_review_app/presentation/theme/app_color.dart';
 
-class RatingScreenConstants {
-  List<RatingCardEntity> ratingCardEntityList = [
+abstract class RatingScreenConstants {
+  RatingScreenConstants._();
+  static List<RatingCardEntity> ratingCardEntityList = [
     RatingCardEntity(
       color: AppColor.cobalt,
       borderColor: AppColor.cobalt38,

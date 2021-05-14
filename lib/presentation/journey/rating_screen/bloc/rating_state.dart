@@ -1,23 +1,25 @@
-import 'package:interview_review_app/presentation/journey/rating_screen/rating_screen_constants.dart';
+import 'package:interview_review_app/domain/entities/rating_card_entity.dart';
 
 abstract class RatingState {
   int index;
+  List<RatingCardEntity> ratingCardEntityList;
 
-  RatingScreenConstants ratingScreenConstants;
-
-  RatingState(this.index, this.ratingScreenConstants);
+  RatingState(
+    this.index,
+    this.ratingCardEntityList,
+  );
 }
 
 class RatingInitial extends RatingState {
-  RatingInitial() : super(0, RatingScreenConstants());
+  RatingInitial() : super(0, []);
 }
 
 class RatingLoaded extends RatingState {
-  RatingLoaded(int index, RatingScreenConstants ratingScreenConstants)
-      : super(index, ratingScreenConstants);
+  RatingLoaded(int index, List<RatingCardEntity> ratingCardEntityList)
+      : super(index, ratingCardEntityList);
 }
 
 class RatingSelected extends RatingState {
-  RatingSelected(int index, RatingScreenConstants ratingScreenConstants)
-      : super(index, ratingScreenConstants);
+  RatingSelected(int index, List<RatingCardEntity> ratingCardEntityList)
+      : super(index, ratingCardEntityList);
 }
