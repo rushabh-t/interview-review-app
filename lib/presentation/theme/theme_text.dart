@@ -160,4 +160,12 @@ extension CustomTextTheme on TextTheme {
   TextStyle get boldSubtitle1 => subtitle1.copyWith(
         fontWeight: FontWeight.w900,
       );
+
+  TextStyle get headline6 => headline6.copyWith(
+        fontSize: 22.sp,
+      );
+
+  TextStyle get reviewHint => headline5.copyWith(
+        fontWeight: FontWeight.w300,
+      );
 }
