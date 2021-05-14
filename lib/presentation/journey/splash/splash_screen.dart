@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     _timer = new Timer(
       AppConstants.splashDuration,
-      () => Navigator.pushReplacementNamed(context, RouteConstants.feedback),
+      () => Navigator.pushReplacementNamed(context, RouteConstants.home),
     );
     super.initState();
   }
