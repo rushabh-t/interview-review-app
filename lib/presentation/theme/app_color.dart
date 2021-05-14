@@ -16,10 +16,17 @@ abstract class AppColor {
   static const Color slateGray = Color(0xFF6C728C);
   static const Color salem = Color(0xFF13873B);
   static const Color jewel = Color(0x610A6F2D);
+  static const Color cobalt = Color(0xFF0036CC);
+  static const Color darkSpringGreen = Color(0xFF208342);
+  static const Color harleyDavidsonOrange = Color(0xFFD83C16);
 
   //Color Alpha Variant
-  static const Color _regalBlue38 = Color(0x6117214D);
+  static const Color regalBlue38 = Color(0x6117214D);
+  static const Color regalBlue87 = Color(0xDE17214D);
   static const Color _regalBlue08 = Color(0x1417214D);
+  static const Color cobalt38 = Color(0x610036CC);
+  static const Color darkSpringGreen38 = Color(0x61208342);
+  static const Color harleyDavidsonOrange38 = Color(0x61D83C16);
 
   // Application Colors
   static const Color primaryColor = Color(0xFF2291F3);
@@ -28,7 +35,7 @@ abstract class AppColor {
   static const Color secondaryColor00 = Color(0x00E9EBF2);
 
   static const Color primaryTextColor = regalBlue;
-  static const Color primaryColorHint38 = _regalBlue38;
+  static const Color primaryColorHint38 = regalBlue38;
   static const Color primaryColorShadow08 = _regalBlue08;
 
   static const Color primaryColorDisabled = slateGray;

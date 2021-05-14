@@ -26,4 +26,13 @@ abstract class LayoutConstants {
   static const dimen_241 = 241.0;
   static const dimen_15 = 15.0;
   static const double dimen_8 = 8.0;
+  static const dimen_180 = 180.0;
+  static const dimen_9 = 9.0;
+  static const dimen_5 = 5.0;
+  static const dimen_2 = 2.0;
+  static const dimen_155 = 155.0;
+  static const dimen_184 = 184.0;
+  static const dimen_17 = 17.0;
+  static const dimen_123 = 123.0;
+  static const dimen_42 = 42.0;
 }

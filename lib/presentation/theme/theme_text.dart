@@ -136,6 +136,7 @@ abstract class ThemeText {
 extension CustomTextTheme on TextTheme {
   TextStyle get boldHeadline1 => headline1.copyWith(
         fontWeight: FontWeight.bold,
+        height: 1.6,
       );
 
   TextStyle get overline2 => overline.copyWith(
@@ -149,6 +150,12 @@ extension CustomTextTheme on TextTheme {
         decoration: TextDecoration.underline,
       );
 
+  TextStyle get backButton => button.copyWith(
+        fontWeight: FontWeight.w500,
+        decoration: TextDecoration.underline,
+        color: AppColor.regalBlue,
+      );
+
   TextStyle get nonButton => caption.copyWith(
         fontWeight: FontWeight.w600,
       );
@@ -159,5 +166,29 @@ extension CustomTextTheme on TextTheme {
 
   TextStyle get boldSubtitle1 => subtitle1.copyWith(
         fontWeight: FontWeight.w900,
+      );
+
+  TextStyle get text1 => bodyText1.copyWith(
+        color: AppColor.regalBlue,
+      );
+
+  TextStyle get text2 => caption.copyWith(
+        color: AppColor.regalBlue87,
+        fontWeight: FontWeight.w400,
+        height: 1.6,
+      );
+
+  TextStyle get selectedText1 => bodyText1.copyWith(
+        color: AppColor.white,
+      );
+
+  TextStyle get selectedText2 => caption.copyWith(
+        color: AppColor.white,
+        fontWeight: FontWeight.w400,
+        height: 1.6,
+      );
+
+  TextStyle get selectedSubtitle1 => subtitle1.copyWith(
+        color: AppColor.primaryColor,
       );
 }
