@@ -146,9 +146,7 @@ class _HomeState extends State<Home> {
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             title: Text(
-              state.userData.results[index].name.first +
-                  ' ' +
-                  state.userData.results[index].name.last,
+              state.userData.results[index].fullName,
               style: (state.userData.results[index].isAdded == true)
                   ? Theme.of(context).textTheme.selectedSubtitle1
                   : ThemeText.subtitle1,
@@ -208,7 +206,7 @@ class _HomeState extends State<Home> {
             horizontal: LayoutConstants.dimen_16,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(LayoutConstants.dimen_8),
+            borderRadius: BorderRadius.circular(LayoutConstants.dimen_8.r),
           ),
         ),
       );

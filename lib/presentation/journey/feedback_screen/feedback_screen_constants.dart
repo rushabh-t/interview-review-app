@@ -1,7 +1,8 @@
 import 'package:interview_review_app/domain/entities/chip_entity.dart';
 
-class FeedbackScreenConstants {
-  List<ChipEntity> chipList = [
+abstract class FeedbackScreenConstants {
+  FeedbackScreenConstants._();
+  static List<ChipEntity> chipList = [
     ChipEntity(chipTitle: "Politeness"),
     ChipEntity(chipTitle: "Professionalism"),
     ChipEntity(chipTitle: "Expertise"),

@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:interview_review_app/common/constants/layout_constants.dart';
-import 'package:interview_review_app/presentation/routes/route_constants.dart';
 import 'package:interview_review_app/presentation/theme/app_color.dart';
 import 'package:interview_review_app/presentation/theme/theme_text.dart';
 
+import 'thank_you_screen.dart';
+
 class Comment extends StatefulWidget {
+  final String rating;
+
+  Comment({Key key, @required this.rating}) : super(key: key);
+
   @override
   _CommentState createState() => _CommentState();
 }
@@ -57,7 +62,7 @@ class _CommentState extends State<Comment> {
               child: Container(
                 height: 48.h,
                 width: LayoutConstants.designWidth.w,
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -72,6 +77,8 @@ class _CommentState extends State<Comment> {
       );
 
   TextField reviewField() => TextField(
+        autofocus: true,
+        autocorrect: false,
         maxLength: 240,
         maxLengthEnforcement: MaxLengthEnforcement.enforced,
         cursorColor: AppColor.regalBlue,
@@ -82,15 +89,25 @@ class _CommentState extends State<Comment> {
         minLines: 1,
         maxLines: 10,
         decoration: InputDecoration(
+          counterText: '',
           border: InputBorder.none,
           labelText: "Write Your Review",
           labelStyle: Theme.of(context).textTheme.reviewHint,
         ),
-        onChanged: (value) => charCount = value.length,
+        onChanged: (String value) {
+          setState(() {
+            charCount = value.length;
+          });
+        },
       );
 
   ElevatedButton submitButton() => ElevatedButton.icon(
-        onPressed: () => Navigator.pushNamed(context, RouteConstants.thank),
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Thankyou(rating: '${widget.rating}'),
+          ),
+        ),
         icon: Text(
           "SUBMIT",
           style: ThemeText.buttonEnabled,
@@ -117,6 +134,6 @@ class _CommentState extends State<Comment> {
           "SKIP",
           style: Theme.of(context).textTheme.button,
         ),
-        onPressed: () => Navigator.pushNamed(context, RouteConstants.feedback),
+        onPressed: () => Navigator.pop(context),
       );
 }

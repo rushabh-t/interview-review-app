@@ -12,8 +12,8 @@ abstract class CommonRoutes {
   static Map<String, WidgetBuilder> all() => {
         RouteConstants.home: (context) => Home(),
         RouteConstants.rating: (context) => RatingScreen(),
-        RouteConstants.feedback: (context) => FeedBack(),
-        RouteConstants.comment: (context) => Comment(),
-        RouteConstants.thank: (context) => Thankyou()
+        RouteConstants.feedback: (context) => FeedBack(index: 0),
+        RouteConstants.comment: (context) => Comment(rating: ''),
+        RouteConstants.thank: (context) => Thankyou(rating: ''),
       };
 }

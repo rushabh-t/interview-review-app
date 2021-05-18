@@ -15,7 +15,7 @@ abstract class AppColor {
   static const Color solitude = Color(0xFFEEEFF5);
   static const Color slateGray = Color(0xFF6C728C);
   static const Color salem = Color(0xFF13873B);
-  static const Color jewel = Color(0x610A6F2D);
+  static const Color jewel = Color(0xFF0C6F2E);
   static const Color cobalt = Color(0xFF0036CC);
   static const Color darkSpringGreen = Color(0xFF208342);
   static const Color harleyDavidsonOrange = Color(0xFFD83C16);
@@ -27,6 +27,7 @@ abstract class AppColor {
   static const Color cobalt38 = Color(0x610036CC);
   static const Color darkSpringGreen38 = Color(0x61208342);
   static const Color harleyDavidsonOrange38 = Color(0x61D83C16);
+  static const Color jewel10 = Color(0x1A0C6F2E);
 
   // Application Colors
   static const Color primaryColor = Color(0xFF2291F3);

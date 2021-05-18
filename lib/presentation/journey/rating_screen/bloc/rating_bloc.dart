@@ -27,9 +27,7 @@ class RatingBloc extends Bloc<RatingEvent, RatingState> {
   Stream<RatingState> _mapOnTapEventToState(OnTapEvent event) async* {
     yield RatingLoaded(event.index, state.ratingCardEntityList);
     ratingCard = state.ratingCardEntityList;
-    ratingCard.forEach((element) {
-      element.isSelected = false;
-    });
+    ratingCard.forEach((element) => element.isSelected = false);
     RatingCardEntity ratingCardEntity = ratingCard[event.index];
     ratingCardEntity.isSelected = true;
     yield RatingSelected(event.index, ratingCard);

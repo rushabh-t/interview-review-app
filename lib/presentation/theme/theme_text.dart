@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:interview_review_app/presentation/theme/app_color.dart';
 
+import 'app_color.dart';
+
 abstract class ThemeText {
   ThemeText._();
 
@@ -45,6 +47,7 @@ abstract class ThemeText {
     fontWeight: FontWeight.normal,
     fontStyle: FontStyle.normal,
     wordSpacing: 0,
+    height: 1.3,
   );
 
   static final TextStyle headline6 = TextStyle(
@@ -139,6 +142,11 @@ extension CustomTextTheme on TextTheme {
         height: 1.6,
       );
 
+  TextStyle get mediumHeadline5 => headline5.copyWith(
+        fontWeight: FontWeight.w500,
+        height: 1.6,
+      );
+
   TextStyle get overline2 => overline.copyWith(
         fontWeight: FontWeight.w900,
         fontSize: 12.sp,
@@ -147,6 +155,15 @@ extension CustomTextTheme on TextTheme {
 
   TextStyle get buttonText => subtitle2.copyWith(
         fontWeight: FontWeight.w500,
+        decoration: TextDecoration.underline,
+      );
+
+  TextStyle get changeText => subtitle2.copyWith(
+        color: AppColor.white,
+        decoration: TextDecoration.underline,
+      );
+
+  TextStyle get commentText => button.copyWith(
         decoration: TextDecoration.underline,
       );
 
@@ -197,5 +214,9 @@ extension CustomTextTheme on TextTheme {
 
   TextStyle get reviewHint => headline5.copyWith(
         fontWeight: FontWeight.w300,
+      );
+
+  TextStyle get chipSelected => bodyText2.copyWith(
+        color: AppColor.jewel,
       );
 }

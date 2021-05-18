@@ -6,6 +6,7 @@ import 'package:interview_review_app/common/constants/svg_constants.dart';
 import 'package:interview_review_app/common/utils/widget_utils.dart';
 import 'package:interview_review_app/di/injector.dart';
 import 'package:interview_review_app/domain/entities/rating_card_entity.dart';
+import 'package:interview_review_app/presentation/journey/feedback_screen/feedback_screen.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_bloc.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_state.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_event.dart';
@@ -189,7 +190,11 @@ class _RatingScreenState extends State<RatingScreen> {
 
   ElevatedButton nextButton() => ratingBloc.state is RatingSelected
       ? ElevatedButton.icon(
-          onPressed: () {},
+          onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      FeedBack(index: ratingBloc.state.index))),
           label: Icon(
             Icons.navigate_next,
             size: LayoutConstants.dimen_24,

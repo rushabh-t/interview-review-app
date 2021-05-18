@@ -12,12 +12,13 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  pedantic: ^1.11.0
-  flutter_svg: ^0.21.0+1
-  flutter_screenutil: ^5.0.0
-  http: ^0.13.1
-  kiwi: ^2.0.1 # For Dependency Injection
   flutter_bloc: ^6.0.3
+  flutter_screenutil: ^5.0.0
+  flutter_svg: ^0.21.0+1
+  http: ^0.13.1
+  kiwi: ^2.0.1
+  pedantic: ^1.11.0
+  sqflite: ^2.0.0+3
 
 dev_dependencies:
   flutter_test:
@@ -30,7 +31,7 @@ flutter:
     - assets/
     - assets/svg/
     - assets/fonts/
-
+    
   fonts:
     - family: Roboto
       fonts:

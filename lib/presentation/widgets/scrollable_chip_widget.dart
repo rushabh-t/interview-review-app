@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:interview_review_app/common/constants/layout_constants.dart';
 import 'package:interview_review_app/domain/entities/chip_entity.dart';
 import 'package:interview_review_app/presentation/theme/app_color.dart';
+import 'package:interview_review_app/presentation/theme/theme_text.dart';
 
 class ScrollableChipWidget extends StatelessWidget {
   final List<ChipEntity> chipList;
@@ -40,15 +41,16 @@ class ScrollableChipWidget extends StatelessWidget {
                       vertical: 9.h,
                     ),
                     labelPadding: EdgeInsets.zero,
-                    labelStyle: Theme.of(context).textTheme.bodyText2,
-                    backgroundColor: value.selected
-                        ? AppColor.buttonEnabledBackground
-                        : AppColor.white,
+                    labelStyle: value.selected
+                        ? Theme.of(context).textTheme.chipSelected
+                        : Theme.of(context).textTheme.bodyText2,
+                    backgroundColor:
+                        value.selected ? AppColor.jewel10 : AppColor.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.r),
                       side: BorderSide(
                         color: value.selected
-                            ? AppColor.buttonEnabledBackground
+                            ? AppColor.jewel
                             : AppColor.primaryColorHint38,
                         width: value.selected ? 2.w : 1.w,
                       ),
