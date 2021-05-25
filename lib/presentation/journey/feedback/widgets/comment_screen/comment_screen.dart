@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:interview_review_app/common/constants/layout_constants.dart';
+import 'package:interview_review_app/presentation/journey/feedback/widgets/comment_screen/comment_screen_constants.dart';
 import 'package:interview_review_app/presentation/theme/app_color.dart';
 import 'package:interview_review_app/presentation/theme/theme_text.dart';
-
-import 'thank_you_screen.dart';
+import 'package:interview_review_app/presentation/journey/feedback/widgets/thankyou_screen/thank_you_screen.dart';
 
 class Comment extends StatefulWidget {
   final String rating;
@@ -17,18 +17,19 @@ class Comment extends StatefulWidget {
 }
 
 class _CommentState extends State<Comment> {
-  int charCount = 0;
+  int charCount = CommentScreenConstants.zero;
 
   @override
   Widget build(BuildContext context) => Scaffold(
         body: Stack(
           children: [
             Positioned(
-              top: 74.h,
+              top: LayoutConstants.dimen_74.h,
               child: Container(
                 height: LayoutConstants.designHeight.h,
                 width: LayoutConstants.designWidth.w,
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                padding: EdgeInsets.symmetric(
+                    horizontal: LayoutConstants.dimen_24.w),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -37,17 +38,17 @@ class _CommentState extends State<Comment> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "COMMENTS (OPTIONAL)",
+                          CommentScreenConstants.commentHeading,
                           style: Theme.of(context).textTheme.overline2,
                         ),
                         Text(
-                          "$charCount/240",
+                          "$charCount" + CommentScreenConstants.charCount,
                           style: Theme.of(context).textTheme.overline2,
                         )
                       ],
                     ),
                     SizedBox(
-                      height: 24.h,
+                      height: LayoutConstants.dimen_24.h,
                     ),
                     Container(
                       width: LayoutConstants.designWidth.w,
@@ -58,11 +59,12 @@ class _CommentState extends State<Comment> {
               ),
             ),
             Positioned(
-              bottom: 72.h,
+              bottom: LayoutConstants.dimen_72.h,
               child: Container(
-                height: 48.h,
+                height: LayoutConstants.dimen_48.h,
                 width: LayoutConstants.designWidth.w,
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                padding: EdgeInsets.symmetric(
+                    horizontal: LayoutConstants.dimen_24.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -79,19 +81,19 @@ class _CommentState extends State<Comment> {
   TextField reviewField() => TextField(
         autofocus: true,
         autocorrect: false,
-        maxLength: 240,
-        maxLengthEnforcement: MaxLengthEnforcement.enforced,
+        maxLength: CommentScreenConstants.maxLength,
+        maxLengthEnforced: true,
         cursorColor: AppColor.regalBlue,
-        cursorWidth: 2.w,
-        cursorHeight: 36.sp,
+        cursorWidth: LayoutConstants.dimen_2.w,
+        cursorHeight: LayoutConstants.dimen_36.sp,
         textInputAction: TextInputAction.newline,
         keyboardType: TextInputType.multiline,
-        minLines: 1,
-        maxLines: 10,
+        minLines: CommentScreenConstants.minLines,
+        maxLines: CommentScreenConstants.maxLines,
         decoration: InputDecoration(
-          counterText: '',
+          counterText: CommentScreenConstants.emptyString,
           border: InputBorder.none,
-          labelText: "Write Your Review",
+          labelText: CommentScreenConstants.writeReview,
           labelStyle: Theme.of(context).textTheme.reviewHint,
         ),
         onChanged: (String value) {
@@ -109,7 +111,7 @@ class _CommentState extends State<Comment> {
           ),
         ),
         icon: Text(
-          "SUBMIT",
+          CommentScreenConstants.submitButton,
           style: ThemeText.buttonEnabled,
         ),
         label: Icon(
@@ -131,7 +133,7 @@ class _CommentState extends State<Comment> {
 
   TextButton skipButton() => TextButton(
         child: Text(
-          "SKIP",
+          CommentScreenConstants.skipButton,
           style: Theme.of(context).textTheme.button,
         ),
         onPressed: () => Navigator.pop(context),

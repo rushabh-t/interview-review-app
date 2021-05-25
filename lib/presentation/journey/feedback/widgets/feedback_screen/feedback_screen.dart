@@ -5,17 +5,16 @@ import 'package:interview_review_app/common/constants/layout_constants.dart';
 import 'package:interview_review_app/di/injector.dart';
 import 'package:interview_review_app/domain/entities/chip_entity.dart';
 import 'package:interview_review_app/domain/entities/rating_card_entity.dart';
-import 'package:interview_review_app/presentation/journey/feedback_screen/bloc/feedback_bloc.dart';
-import 'package:interview_review_app/presentation/journey/feedback_screen/feedback_screen_constants.dart';
-import 'package:interview_review_app/presentation/journey/rating_screen/rating_screen_constants.dart';
+import 'package:interview_review_app/presentation/journey/feedback/bloc/feedback_bloc.dart';
+import 'package:interview_review_app/presentation/journey/feedback/widgets/feedback_screen/feedback_screen_constants.dart';
+import 'package:interview_review_app/presentation/journey/rating_screen/widgets/rating_screen_constants.dart';
 import 'package:interview_review_app/presentation/theme/app_color.dart';
 import 'package:interview_review_app/presentation/theme/theme_text.dart';
 import 'package:interview_review_app/presentation/widgets/scrollable_chip_widget.dart';
-import 'package:interview_review_app/presentation/journey/feedback_screen/bloc/feedback_state.dart';
-import 'package:interview_review_app/presentation/journey/feedback_screen/bloc/feedback_event.dart';
-
-import 'comment_screen.dart';
-import 'thank_you_screen.dart';
+import 'package:interview_review_app/presentation/journey/feedback/bloc/feedback_state.dart';
+import 'package:interview_review_app/presentation/journey/feedback/bloc/feedback_event.dart';
+import 'package:interview_review_app/presentation/journey/feedback/widgets/comment_screen/comment_screen.dart';
+import 'package:interview_review_app/presentation/journey/feedback/widgets/thankyou_screen/thank_you_screen.dart';
 
 class FeedBack extends StatefulWidget {
   final int index;
@@ -55,36 +54,45 @@ class _FeedBackState extends State<FeedBack> {
   Stack getStack(FeedbackState state) => Stack(
         children: [
           Positioned(
-            top: 0.h,
+            top: LayoutConstants.dimen_0.h,
             child: Column(
               children: [
                 Container(
                   alignment: Alignment.topLeft,
                   width: LayoutConstants.designWidth.w,
-                  height: 242.h,
+                  height: LayoutConstants.dimen_242.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(18.r),
-                        bottomRight: Radius.circular(18.r)),
+                        bottomLeft: Radius.circular(LayoutConstants.dimen_18.r),
+                        bottomRight:
+                            Radius.circular(LayoutConstants.dimen_18.r)),
                     color: AppColor.solitude,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(24.w, 74.h, 24.w, 24.h),
+                        margin: EdgeInsets.fromLTRB(
+                            LayoutConstants.dimen_24.w,
+                            LayoutConstants.dimen_74.h,
+                            LayoutConstants.dimen_24.w,
+                            LayoutConstants.dimen_24.h),
                         child: Text(
-                          "YOU HAVE RATED YOUR INTERVIEWER",
+                          FeedbackScreenConstants.ratingText,
                           style: Theme.of(context).textTheme.overline2,
                         ),
                       ),
                       SizedBox(
-                        height: 16.h,
+                        height: LayoutConstants.dimen_15.h,
                       ),
                       Container(
-                          height: 90.h,
+                          height: LayoutConstants.dimen_90.h,
                           width: LayoutConstants.designWidth.w,
-                          margin: EdgeInsets.fromLTRB(24.w, 0.h, 24.w, 24.h),
+                          margin: EdgeInsets.fromLTRB(
+                              LayoutConstants.dimen_24.w,
+                              LayoutConstants.dimen_0.h,
+                              LayoutConstants.dimen_24.w,
+                              LayoutConstants.dimen_24.h),
                           child: ratingCard
                               .map(
                                 (value) => Card(
@@ -102,8 +110,8 @@ class _FeedBackState extends State<FeedBack> {
                                         CrossAxisAlignment.center,
                                     children: [
                                       Container(
-                                        height: 56.h,
-                                        width: 56.h,
+                                        height: LayoutConstants.dimen_40.h,
+                                        width: LayoutConstants.dimen_40.w,
                                         child: value.icon,
                                       ),
                                       Column(
@@ -113,8 +121,8 @@ class _FeedBackState extends State<FeedBack> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Container(
-                                            height: 21.h,
-                                            width: 123.w,
+                                            height: LayoutConstants.dimen_21.h,
+                                            width: LayoutConstants.dimen_123.w,
                                             child: Text(
                                               '${value.text1}',
                                               style: Theme.of(context)
@@ -123,8 +131,8 @@ class _FeedBackState extends State<FeedBack> {
                                             ),
                                           ),
                                           Container(
-                                            height: 21.h,
-                                            width: 160.w,
+                                            height: LayoutConstants.dimen_21.h,
+                                            width: LayoutConstants.dimen_160.w,
                                             child: Text(
                                               '${value.text2}',
                                               style: Theme.of(context)
@@ -142,7 +150,8 @@ class _FeedBackState extends State<FeedBack> {
                                             onPressed: () =>
                                                 Navigator.pop(context),
                                             child: Text(
-                                              'CHANGE',
+                                              FeedbackScreenConstants
+                                                  .changeRating,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .changeText,
@@ -162,12 +171,13 @@ class _FeedBackState extends State<FeedBack> {
                   height: LayoutConstants.dimen_32.h,
                 ),
                 Container(
-                  height: 66.h,
+                  height: LayoutConstants.dimen_66.h,
                   width: LayoutConstants.designWidth.w,
                   padding: EdgeInsets.symmetric(
                       horizontal: LayoutConstants.dimen_24.w),
                   child: Text(
-                    "What made the interviewers ${ratingCard.map((value) => value.text1).elementAt(widget.index)}?",
+                    FeedbackScreenConstants.qualities +
+                        "${ratingCard.map((value) => value.text1).elementAt(widget.index)}?",
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.headline6,
                   ),
@@ -189,11 +199,12 @@ class _FeedBackState extends State<FeedBack> {
             ),
           ),
           Positioned(
-            bottom: 72.h,
+            bottom: LayoutConstants.dimen_72.h,
             child: Container(
-              height: 48.h,
+              height: LayoutConstants.dimen_48.h,
               width: LayoutConstants.designWidth.w,
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              padding:
+                  EdgeInsets.symmetric(horizontal: LayoutConstants.dimen_24.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -218,7 +229,7 @@ class _FeedBackState extends State<FeedBack> {
           color: AppColor.regalBlue,
         ),
         label: Text(
-          "ADD COMMENT",
+          FeedbackScreenConstants.comment,
           style: Theme.of(context).textTheme.commentText,
         ),
       );
@@ -231,7 +242,7 @@ class _FeedBackState extends State<FeedBack> {
                     rating:
                         '${ratingCard.map((value) => value.text1).elementAt(widget.index)}'))),
         icon: Text(
-          "SUBMIT",
+          FeedbackScreenConstants.submit,
           style: ThemeText.buttonEnabled,
         ),
         label: Icon(
@@ -242,11 +253,11 @@ class _FeedBackState extends State<FeedBack> {
         style: ElevatedButton.styleFrom(
           primary: AppColor.salem,
           padding: EdgeInsets.symmetric(
-            vertical: LayoutConstants.dimen_15,
-            horizontal: LayoutConstants.dimen_16,
+            vertical: LayoutConstants.dimen_15.h,
+            horizontal: LayoutConstants.dimen_16.w,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(LayoutConstants.dimen_8),
+            borderRadius: BorderRadius.circular(LayoutConstants.dimen_8.r),
           ),
         ),
       );

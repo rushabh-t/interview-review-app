@@ -50,4 +50,9 @@ abstract class RatingScreenConstants {
       text2: "Needs to Improve! A LOT!",
     ),
   ];
+
+  static const String selectRating = "SELECT YOUR RATING";
+  static const String backButton = "GO BACK";
+  static const String chooseRating = "How would you rate your interviewer(s)?";
+  static const String nextButton = "NEXT";
 }

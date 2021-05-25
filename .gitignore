@@ -111,3 +111,7 @@ org.eclipse.buildship.core.prefs
 
 # Don’t commit the API documentation directory created by dartdoc:
 doc/api/
+ios/Podfile.lock
+ios/Podfile.lock
+ios/Flutter/Debug.xcconfig
+ios/Flutter/Release.xcconfig

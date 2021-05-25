@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:interview_review_app/common/constants/app_constants.dart';
 import 'package:interview_review_app/common/constants/layout_constants.dart';
 import 'package:interview_review_app/presentation/journey/splash/splash_screen.dart';

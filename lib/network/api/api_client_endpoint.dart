@@ -1,5 +1,5 @@
 abstract class ApiEndPoint {
   ApiEndPoint._();
   static const baseUrl = 'https://randomuser.me/api/';
-  static const randomUserList = '?results=';
+  static const randomUserList = '?seed=ab&inc=name,cell&results=';
 }

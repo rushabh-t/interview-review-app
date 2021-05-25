@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:interview_review_app/domain/entities/chip_entity.dart';
-import 'package:interview_review_app/presentation/journey/feedback_screen/bloc/feedback_event.dart';
-import 'package:interview_review_app/presentation/journey/feedback_screen/bloc/feedback_state.dart';
-import 'package:interview_review_app/presentation/journey/feedback_screen/feedback_screen_constants.dart';
+import 'package:interview_review_app/presentation/journey/feedback/bloc/feedback_event.dart';
+import 'package:interview_review_app/presentation/journey/feedback/bloc/feedback_state.dart';
+import 'package:interview_review_app/presentation/journey/feedback/widgets/feedback_screen/feedback_screen_constants.dart';
 
 class FeedbackBloc extends Bloc<FeedbackEvent, FeedbackState> {
   List<ChipEntity> chipList;

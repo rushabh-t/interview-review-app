@@ -7,7 +7,7 @@ class UserRemoteDataSource {
 
   UserRemoteDataSource(this._client);
 
-  Future<UserData> getUserData({int count = 50}) async {
+  Future<UserData> getUserData({int count}) async {
     Map<String, dynamic> jsonData =
         await _client.get('${ApiEndPoint.randomUserList}$count');
     return UserData.fromJson(jsonData);

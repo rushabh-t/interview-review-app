@@ -219,4 +219,10 @@ extension CustomTextTheme on TextTheme {
   TextStyle get chipSelected => bodyText2.copyWith(
         color: AppColor.jewel,
       );
+
+  TextStyle get searchText => caption.copyWith(
+        height: 1.4,
+        color: AppColor.regalBlue38,
+        fontWeight: FontWeight.w400,
+      );
 }

@@ -11,4 +11,9 @@ abstract class FeedbackScreenConstants {
     ChipEntity(chipTitle: "Questions Asked"),
     ChipEntity(chipTitle: "Quality of Questions"),
   ];
+  static const String ratingText = "YOU HAVE RATED YOUR INTERVIEWER";
+  static const String changeRating = "CHANGE";
+  static const String qualities = "What made the interviewers ";
+  static const String comment = "ADD COMMENT";
+  static const String submit = "SUBMIT";
 }

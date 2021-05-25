@@ -6,5 +6,5 @@ class DataTable {
   static final String isAdded = "isAdded";
 
   static final String create =
-      "CREATE TABLE $tableName($id TEXT PRIMARY KEY NOT NULL, $name TEXT, $cell TEXT, $isAdded TEXT)";
+      "CREATE TABLE $tableName($id INTEGER PRIMARY KEY AUTOINCREMENT, $name TEXT, $cell TEXT, $isAdded TEXT)";
 }
