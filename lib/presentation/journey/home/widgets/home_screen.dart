@@ -61,7 +61,7 @@ class _HomeState extends State<Home> {
             child: Container(
               padding:
                   EdgeInsets.symmetric(horizontal: LayoutConstants.dimen_24.w),
-              height: LayoutConstants.dimen_642.h,
+              height: LayoutConstants.designHeight.h,
               width: LayoutConstants.designWidth.w,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -96,10 +96,17 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   SizedBox(height: LayoutConstants.dimen_16.h),
-                  Flexible(
-                    child: Container(
-                      width: LayoutConstants.designWidth.w,
-                      child: getList(state),
+                  MediaQuery.removePadding(
+                    context: context,
+                    removeLeft: true,
+                    removeRight: true,
+                    child: Expanded(
+                      child: Container(
+                        padding:
+                            EdgeInsets.only(bottom: LayoutConstants.dimen_80.h),
+                        width: LayoutConstants.designWidth.w,
+                        child: getList(state),
+                      ),
                     ),
                   ),
                 ],
@@ -115,16 +122,17 @@ class _HomeState extends State<Home> {
               height: LayoutConstants.dimen_96.h,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
+                  begin: Alignment.topLeft,
                   end: Alignment.bottomLeft,
-                  stops: [0.6, 0.9],
+                  stops: [0.2, 0.5],
                   colors: [
                     AppColor.secondaryColor00,
-                    AppColor.secondaryColor83,
+                    AppColor.secondaryColor,
                   ],
                 ),
               ),
               child: Container(
+                color: AppColor.secondaryColor,
                 width: LayoutConstants.dimen_120.w,
                 margin: EdgeInsets.fromLTRB(
                     LayoutConstants.dimen_241.w,
@@ -147,18 +155,23 @@ class _HomeState extends State<Home> {
           height: LayoutConstants.dimen_24.h,
         ),
         itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(
-              state.userData.results[index].fullName,
-              style: (state.userData.results[index].isAdded == true)
-                  ? Theme.of(context).textTheme.selectedSubtitle1
-                  : ThemeText.subtitle1,
+          return MediaQuery.removePadding(
+            context: context,
+            removeLeft: true,
+            child: ListTile(
+              title: Text(
+                state.userData.results[index].fullName,
+                style: (state.userData.results[index].isAdded == true)
+                    ? Theme.of(context).textTheme.selectedSubtitle1
+                    : ThemeText.subtitle1,
+              ),
+              subtitle: Text(
+                state.userData.results[index].cell,
+                style: ThemeText.subtitle2,
+              ),
+              trailing:
+                  getAddRemoveButton(state.userData.results[index], index),
             ),
-            subtitle: Text(
-              state.userData.results[index].cell,
-              style: ThemeText.subtitle2,
-            ),
-            trailing: getAddRemoveButton(state.userData.results[index], index),
           );
         },
       );
@@ -203,7 +216,7 @@ class _HomeState extends State<Home> {
           style: ThemeText.button,
         ),
         style: ElevatedButton.styleFrom(
-          primary: AppColor.logan,
+          primary: AppColor.buttonDisabledBackground,
           padding: EdgeInsets.symmetric(
             vertical: LayoutConstants.dimen_15,
             horizontal: LayoutConstants.dimen_16,

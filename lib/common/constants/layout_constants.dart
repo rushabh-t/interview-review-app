@@ -34,6 +34,7 @@ abstract class LayoutConstants {
   static const double dimen_66 = 66.0;
   static const double dimen_72 = 72.0;
   static const double dimen_74 = 74.0;
+  static const double dimen_80 = 80.0;
   static const double dimen_90 = 90.0;
   static const double dimen_96 = 96.0;
   static const double dimen_120 = 120.0;
