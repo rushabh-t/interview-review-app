@@ -13,3 +13,9 @@ class UserRemoveEvent extends HomeEvent {
 
   UserRemoveEvent(this.index);
 }
+
+class SearchEvent extends HomeEvent {
+  String query;
+
+  SearchEvent(this.query);
+}

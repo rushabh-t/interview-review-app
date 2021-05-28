@@ -12,6 +12,7 @@ class _$InjectorConfig extends InjectorConfig {
     final KiwiContainer container = KiwiContainer();
     container.registerFactory((c) => HomeBloc(c<UserUsecase>()));
     container.registerFactory((c) => RatingBloc());
+    container.registerFactory((c) => FeedbackBloc());
   }
 
   @override
@@ -23,8 +24,8 @@ class _$InjectorConfig extends InjectorConfig {
   @override
   void _configureRepositories() {
     final KiwiContainer container = KiwiContainer();
-    container.registerSingleton<UserRepository>(
-        (c) => UserRepositoryImpl(c<UserRemoteDataSource>()));
+    container.registerSingleton<UserRepository>((c) => UserRepositoryImpl(
+        c<UserRemoteDataSource>(), c<UserLocalDataSource>()));
   }
 
   @override
@@ -32,6 +33,7 @@ class _$InjectorConfig extends InjectorConfig {
   @override
   void _configureRemoteDataSources() {
     final KiwiContainer container = KiwiContainer();
+    container.registerSingleton((c) => UserLocalDataSource(c<DBClient>()));
     container.registerSingleton((c) => UserRemoteDataSource(c<ApiClient>()));
   }
 
@@ -39,5 +41,6 @@ class _$InjectorConfig extends InjectorConfig {
   void _configureCommon() {
     final KiwiContainer container = KiwiContainer();
     container.registerSingleton((c) => ApiClient());
+    container.registerSingleton((c) => DBClient());
   }
 }

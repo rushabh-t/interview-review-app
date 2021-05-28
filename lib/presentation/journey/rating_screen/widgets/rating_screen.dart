@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,9 +7,11 @@ import 'package:interview_review_app/common/constants/svg_constants.dart';
 import 'package:interview_review_app/common/utils/widget_utils.dart';
 import 'package:interview_review_app/di/injector.dart';
 import 'package:interview_review_app/domain/entities/rating_card_entity.dart';
+import 'package:interview_review_app/presentation/journey/feedback/widgets/feedback_screen/feedback_screen.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_bloc.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_state.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_event.dart';
+import 'package:interview_review_app/presentation/journey/rating_screen/widgets/rating_screen_constants.dart';
 import 'package:interview_review_app/presentation/theme/app_color.dart';
 import 'package:interview_review_app/presentation/theme/theme_text.dart';
 
@@ -63,18 +66,25 @@ class _RatingScreenState extends State<RatingScreen> {
                 children: [
                   getTitle(),
                   SizedBox(
-                    height: LayoutConstants.dimen_24.h,
+                    height: LayoutConstants.dimen_16.h,
                   ),
                   Container(
-                    height: LayoutConstants.dimen_14.h,
                     width: LayoutConstants.designWidth.w,
                     child: Text(
-                      "SELECT YOUR RATING",
+                      RatingScreenConstants.selectRating,
                       textAlign: TextAlign.left,
                       style: Theme.of(context).textTheme.overline2,
                     ),
                   ),
+                  SizedBox(
+                      height: (Platform.isAndroid)
+                          ? LayoutConstants.dimen_16.h
+                          : LayoutConstants.dimen_0.h),
                   getRatings(state),
+                  SizedBox(
+                      height: (Platform.isAndroid)
+                          ? LayoutConstants.dimen_16.h
+                          : LayoutConstants.dimen_0.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -92,7 +102,7 @@ class _RatingScreenState extends State<RatingScreen> {
   TextButton goBackButton() => TextButton(
         onPressed: () => Navigator.pop(context),
         child: Text(
-          "GO BACK",
+          RatingScreenConstants.backButton,
           style: Theme.of(context).textTheme.backButton,
         ),
       );
@@ -101,7 +111,7 @@ class _RatingScreenState extends State<RatingScreen> {
         height: LayoutConstants.dimen_180.h,
         width: LayoutConstants.designWidth.w,
         child: Text(
-          "How would you rate your interviewer(s)?",
+          RatingScreenConstants.chooseRating,
           textAlign: TextAlign.left,
           style: Theme.of(context).textTheme.boldHeadline1,
         ),
@@ -139,11 +149,11 @@ class _RatingScreenState extends State<RatingScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.only(
-                            top: LayoutConstants.dimen_16.h,
-                            left: LayoutConstants.dimen_16.w,
-                          ),
+                          margin: EdgeInsets.fromLTRB(
+                              LayoutConstants.dimen_16.w,
+                              LayoutConstants.dimen_16.h,
+                              LayoutConstants.dimen_0,
+                              LayoutConstants.dimen_0),
                           child: value.icon,
                         ),
                         SizedBox(
@@ -189,14 +199,18 @@ class _RatingScreenState extends State<RatingScreen> {
 
   ElevatedButton nextButton() => ratingBloc.state is RatingSelected
       ? ElevatedButton.icon(
-          onPressed: () {},
+          onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      FeedBack(index: ratingBloc.state.index))),
           label: Icon(
             Icons.navigate_next,
             size: LayoutConstants.dimen_24,
             color: AppColor.white,
           ),
           icon: Text(
-            "NEXT",
+            RatingScreenConstants.nextButton,
             style: ThemeText.buttonEnabled,
           ),
           style: ElevatedButton.styleFrom(
@@ -217,7 +231,7 @@ class _RatingScreenState extends State<RatingScreen> {
             size: LayoutConstants.dimen_24,
           ),
           icon: Text(
-            "NEXT",
+            RatingScreenConstants.nextButton,
             style: ThemeText.button,
           ),
           style: ElevatedButton.styleFrom(

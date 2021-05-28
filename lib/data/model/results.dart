@@ -2,25 +2,28 @@ import 'package:interview_review_app/data/model/name.dart';
 
 class Results {
   Name name;
-  String phone;
+  String fullName;
+
   String cell;
   bool isAdded;
 
-  Results({this.name, this.phone, this.cell, this.isAdded = false});
+  Results({this.cell, this.isAdded = false, this.fullName});
 
   Results.fromJson(Map<String, dynamic> json) {
     name = json['name'] != null ? Name.fromJson(json['name']) : null;
-    phone = json['phone'];
+
     cell = json['cell'];
+    fullName = name.name;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.name != null) {
-      data['name'] = this.name.toJson();
+      data['name'] = this.name.toJson().toString();
     }
-    data['phone'] = this.phone;
+
     data['cell'] = this.cell;
+    data['fullName'] = this.name;
     return data;
   }
 }

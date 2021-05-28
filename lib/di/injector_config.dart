@@ -1,7 +1,10 @@
+import 'package:interview_review_app/data/database/db_client.dart';
+import 'package:interview_review_app/data/datasources/user_local_data_source.dart';
 import 'package:interview_review_app/data/datasources/user_remote_data_source.dart';
 import 'package:interview_review_app/data/repositories/user_repository_impl.dart';
 import 'package:interview_review_app/domain/respositories/user_repository.dart';
 import 'package:interview_review_app/domain/usecases/user_usecase.dart';
+import 'package:interview_review_app/presentation/journey/feedback/bloc/feedback_bloc.dart';
 import 'package:interview_review_app/presentation/journey/home/bloc/home_bloc.dart';
 import 'package:interview_review_app/presentation/journey/rating_screen/bloc/rating_bloc.dart';
 import 'package:kiwi/kiwi.dart';
@@ -34,6 +37,7 @@ abstract class InjectorConfig {
   /// ============ Register Blocs ============
   @Register.factory(HomeBloc)
   @Register.factory(RatingBloc)
+  @Register.factory(FeedbackBloc)
   void _configureBlocs();
 
   /// ============ Register UseCases ============
@@ -46,6 +50,7 @@ abstract class InjectorConfig {
 
   /// ============ Register LocalDataSources ============
   void _configureLocalDataSources();
+  @Register.singleton(UserLocalDataSource)
 
   /// ============ Register RemoteDataSources ============
   @Register.singleton(UserRemoteDataSource)
@@ -53,5 +58,6 @@ abstract class InjectorConfig {
 
   /// ============ Register Common Classes ============
   @Register.singleton(ApiClient)
+  @Register.singleton(DBClient)
   void _configureCommon();
 }

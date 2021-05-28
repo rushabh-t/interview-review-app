@@ -8,9 +8,11 @@ import 'package:interview_review_app/di/injector.dart';
 import 'package:interview_review_app/presentation/journey/home/bloc/home_bloc.dart';
 import 'package:interview_review_app/presentation/journey/home/bloc/home_event.dart';
 import 'package:interview_review_app/presentation/journey/home/bloc/home_state.dart';
+import 'package:interview_review_app/presentation/journey/home/widgets/home_screen_constants.dart';
 import 'package:interview_review_app/presentation/routes/route_constants.dart';
 import 'package:interview_review_app/presentation/theme/app_color.dart';
 import 'package:interview_review_app/presentation/theme/theme_text.dart';
+import 'package:interview_review_app/presentation/widgets/search_bar_widget.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -69,14 +71,17 @@ class _HomeState extends State<Home> {
                   Container(
                     width: LayoutConstants.designWidth.w,
                     child: Text(
-                      "Interviewers",
+                      HomeScreenConstants.title,
                       textAlign: TextAlign.left,
                       style: Theme.of(context).textTheme.boldHeadline1,
                     ),
                   ),
                   SizedBox(height: LayoutConstants.dimen_16.h),
                   Container(
-                    //this container is for search bar
+                    child: SearchbarWidget(
+                      onChanged: (value) => homeBloc.add(SearchEvent(value)),
+                      hintText: HomeScreenConstants.searchHint,
+                    ),
                     height: LayoutConstants.dimen_48.h,
                     width: LayoutConstants.designWidth.w,
                   ),
@@ -85,7 +90,7 @@ class _HomeState extends State<Home> {
                     height: LayoutConstants.dimen_14.h,
                     width: LayoutConstants.designWidth.w,
                     child: Text(
-                      "${state.count} ADDED",
+                      "${state.count} " + HomeScreenConstants.countText,
                       textAlign: TextAlign.left,
                       style: Theme.of(context).textTheme.overline2,
                     ),
@@ -105,38 +110,36 @@ class _HomeState extends State<Home> {
           //2nd Element stack
           Positioned(
             top: LayoutConstants.dimen_683.h,
-            child: Stack(
-              children: [
-                Container(
-                  width: LayoutConstants.designWidth.w,
-                  height: LayoutConstants.dimen_96.h,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomLeft,
-                      stops: [0.1, 0.4],
-                      colors: [
-                        AppColor.secondaryColor00,
-                        AppColor.secondaryColor83,
-                      ],
-                    ),
-                  ),
+            child: Container(
+              width: LayoutConstants.designWidth.w,
+              height: LayoutConstants.dimen_96.h,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.bottomLeft,
+                  stops: [0.6, 0.9],
+                  colors: [
+                    AppColor.secondaryColor00,
+                    AppColor.secondaryColor83,
+                  ],
                 ),
-                Positioned(
-                  left: LayoutConstants.dimen_241.w,
-                  top: LayoutConstants.dimen_24.h,
-                  child: getNextButton(),
-                ),
-              ],
+              ),
+              child: Container(
+                width: LayoutConstants.dimen_120.w,
+                margin: EdgeInsets.fromLTRB(
+                    LayoutConstants.dimen_241.w,
+                    LayoutConstants.dimen_24.h,
+                    LayoutConstants.dimen_24.w,
+                    LayoutConstants.dimen_24.h),
+                child: getNextButton(),
+              ),
             ),
           ),
         ],
       );
 
-  Widget getList(state) {
-    if (state is ListLoadedState ||
-        state is UserAddedState ||
-        state is UserRemovedState) {
+  Widget getList(HomeState state) {
+    if (state is! ListLoadingState) {
       return ListView.separated(
         shrinkWrap: true,
         itemCount: state.userData.results.length,
@@ -146,9 +149,7 @@ class _HomeState extends State<Home> {
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             title: Text(
-              state.userData.results[index].name.first +
-                  ' ' +
-                  state.userData.results[index].name.last,
+              state.userData.results[index].fullName,
               style: (state.userData.results[index].isAdded == true)
                   ? Theme.of(context).textTheme.selectedSubtitle1
                   : ThemeText.subtitle1,
@@ -169,7 +170,7 @@ class _HomeState extends State<Home> {
     if (item.isAdded == true) {
       return TextButton(
         child: Text(
-          "REMOVE",
+          HomeScreenConstants.removeButton,
           style: Theme.of(context).textTheme.buttonText,
         ),
         onPressed: () => onRemovePressed(index),
@@ -177,7 +178,7 @@ class _HomeState extends State<Home> {
     } else {
       return TextButton(
         child: Text(
-          "ADD",
+          HomeScreenConstants.addButton,
           style: Theme.of(context).textTheme.buttonText,
         ),
         onPressed: () => onAddPressed(index),
@@ -198,7 +199,7 @@ class _HomeState extends State<Home> {
           size: LayoutConstants.dimen_24,
         ),
         icon: Text(
-          "NEXT",
+          HomeScreenConstants.nextButton,
           style: ThemeText.button,
         ),
         style: ElevatedButton.styleFrom(
@@ -208,7 +209,7 @@ class _HomeState extends State<Home> {
             horizontal: LayoutConstants.dimen_16,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(LayoutConstants.dimen_8),
+            borderRadius: BorderRadius.circular(LayoutConstants.dimen_8.r),
           ),
         ),
       );
@@ -221,7 +222,7 @@ class _HomeState extends State<Home> {
           color: AppColor.white,
         ),
         icon: Text(
-          "NEXT",
+          HomeScreenConstants.nextButton,
           style: ThemeText.buttonEnabled,
         ),
         style: ElevatedButton.styleFrom(
