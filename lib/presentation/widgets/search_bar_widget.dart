@@ -34,6 +34,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
           cursorColor: AppColor.regalBlue,
           decoration: new InputDecoration(
             hintText: widget.hintText,
+
             contentPadding: EdgeInsets.only(
                 left: LayoutConstants.dimen_8.w,
                 top: LayoutConstants.dimen_9.h),
